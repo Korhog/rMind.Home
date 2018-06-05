@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rMind.Server", "rMind.Serve
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{F4098AB5-E89F-4725-9559-D3A2E80AF619}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rMind.Core", "rMind.Core\rMind.Core.csproj", "{70077434-38CC-4B90-A06A-5D57519FD895}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,9 +19,16 @@ Global
 		{838E9289-3161-4FAD-836B-16BF5DDA1827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{838E9289-3161-4FAD-836B-16BF5DDA1827}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{838E9289-3161-4FAD-836B-16BF5DDA1827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70077434-38CC-4B90-A06A-5D57519FD895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70077434-38CC-4B90-A06A-5D57519FD895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70077434-38CC-4B90-A06A-5D57519FD895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70077434-38CC-4B90-A06A-5D57519FD895}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{70077434-38CC-4B90-A06A-5D57519FD895} = {F4098AB5-E89F-4725-9559-D3A2E80AF619}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CB032615-B6EC-4A30-BA47-0E344A6C0D81}

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "a8441fe0df09a633a4d964280ed1d3c635b71119"
+    "signature": "4faa2a092176b5c07868d5644f987defab27e26d"
   },
   "compilationOptions": {
     "defines": [
@@ -24,13 +24,50 @@
       "rMind.Server/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.All": "2.0.8",
-          "Microsoft.NETCore.App": "2.0.0"
+          "Microsoft.NETCore.App": "2.0.0",
+          "rMind.Core": "1.0.0"
         },
         "runtime": {
           "rMind.Server.dll": {}
         },
         "compile": {
           "rMind.Server.dll": {}
+        }
+      },
+      "Bifrost.Devices.Gpio/0.0.2": {
+        "dependencies": {
+          "Bifrost.Devices.Gpio.Abstractions": "0.0.1",
+          "Bifrost.Devices.Gpio.Core": "0.0.1",
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Bifrost.Devices.Gpio.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.6/Bifrost.Devices.Gpio.dll": {}
+        }
+      },
+      "Bifrost.Devices.Gpio.Abstractions/0.0.1": {
+        "dependencies": {
+          "Bifrost.Devices.Gpio.Core": "0.0.1",
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Bifrost.Devices.Gpio.Abstractions.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.6/Bifrost.Devices.Gpio.Abstractions.dll": {}
+        }
+      },
+      "Bifrost.Devices.Gpio.Core/0.0.1": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Bifrost.Devices.Gpio.Core.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.6/Bifrost.Devices.Gpio.Core.dll": {}
         }
       },
       "Libuv/1.10.0": {
@@ -3794,6 +3831,19 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "rMind.Core/1.0.0": {
+        "dependencies": {
+          "Bifrost.Devices.Gpio": "0.0.2",
+          "Bifrost.Devices.Gpio.Abstractions": "0.0.1",
+          "Bifrost.Devices.Gpio.Core": "0.0.1"
+        },
+        "runtime": {
+          "rMind.Core.dll": {}
+        },
+        "compile": {
+          "rMind.Core.dll": {}
+        }
+      },
       "Microsoft.NETCore.App/2.0.0": {
         "dependencies": {
           "Microsoft.NETCore.DotNetHostPolicy": "2.0.0",
@@ -3977,6 +4027,27 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Bifrost.Devices.Gpio/0.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-upm5PFyapdj62+02azge1s9dAf9s0J69+yqUYu2aWvukg/PqIrCVDzubbzDbOeJAybitVqBpLw6VYF4qjg1eaQ==",
+      "path": "bifrost.devices.gpio/0.0.2",
+      "hashPath": "bifrost.devices.gpio.0.0.2.nupkg.sha512"
+    },
+    "Bifrost.Devices.Gpio.Abstractions/0.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Zqkxy6/S0JtcSYjRimYFVkKYgL/PRM5ikx2duy+M2z+stmQ65HjpM40Khb5u8bLCL6gsqgL11TQ5TBR21ThJ6g==",
+      "path": "bifrost.devices.gpio.abstractions/0.0.1",
+      "hashPath": "bifrost.devices.gpio.abstractions.0.0.1.nupkg.sha512"
+    },
+    "Bifrost.Devices.Gpio.Core/0.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cf21W4KlNczkb/XwaXURUuFG/ZyyCBPwtlEFDGIXLg3ejDzPF0PMsSwBtGGc3NEbVd8rq/vr5g8G6zamVJMmrQ==",
+      "path": "bifrost.devices.gpio.core/0.0.1",
+      "hashPath": "bifrost.devices.gpio.core.0.0.1.nupkg.sha512"
     },
     "Libuv/1.10.0": {
       "type": "package",
@@ -5979,6 +6050,11 @@
       "sha512": "sha512-W6ZZ0/o7+3Qb77mRAQyLjPudHG3OMeeQ4p9yY13PUdJArmRCx2cLMm5F4tpIjJXxzHC0ew0oK7DMDGILMdfCnw==",
       "path": "windowsazure.storage/8.1.4",
       "hashPath": "windowsazure.storage.8.1.4.nupkg.sha512"
+    },
+    "rMind.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Microsoft.NETCore.App/2.0.0": {
       "type": "package",
