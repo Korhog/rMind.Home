@@ -1,0 +1,11 @@
+C:\_git\rmind.home\rMind.Server\rMind.Server\bin\Debug\netcoreapp2.0\rMind.Server.deps.json
+C:\_git\rmind.home\rMind.Server\rMind.Server\bin\Debug\netcoreapp2.0\rMind.Server.runtimeconfig.json
+C:\_git\rmind.home\rMind.Server\rMind.Server\bin\Debug\netcoreapp2.0\rMind.Server.runtimeconfig.dev.json
+C:\_git\rmind.home\rMind.Server\rMind.Server\bin\Debug\netcoreapp2.0\rMind.Server.dll
+C:\_git\rmind.home\rMind.Server\rMind.Server\bin\Debug\netcoreapp2.0\rMind.Server.pdb
+C:\_git\rmind.home\rMind.Server\rMind.Server\obj\Debug\netcoreapp2.0\rMind.Server.csprojAssemblyReference.cache
+C:\_git\rmind.home\rMind.Server\rMind.Server\obj\Debug\netcoreapp2.0\rMind.Server.csproj.CoreCompileInputs.cache
+C:\_git\rmind.home\rMind.Server\rMind.Server\obj\Debug\netcoreapp2.0\rMind.Server.AssemblyInfoInputs.cache
+C:\_git\rmind.home\rMind.Server\rMind.Server\obj\Debug\netcoreapp2.0\rMind.Server.AssemblyInfo.cs
+C:\_git\rmind.home\rMind.Server\rMind.Server\obj\Debug\netcoreapp2.0\rMind.Server.dll
+C:\_git\rmind.home\rMind.Server\rMind.Server\obj\Debug\netcoreapp2.0\rMind.Server.pdb

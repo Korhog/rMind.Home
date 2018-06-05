@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rMind.Server", "rMind.Server\rMind.Server.csproj", "{838E9289-3161-4FAD-836B-16BF5DDA1827}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{F4098AB5-E89F-4725-9559-D3A2E80AF619}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{838E9289-3161-4FAD-836B-16BF5DDA1827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{838E9289-3161-4FAD-836B-16BF5DDA1827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{838E9289-3161-4FAD-836B-16BF5DDA1827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{838E9289-3161-4FAD-836B-16BF5DDA1827}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB032615-B6EC-4A30-BA47-0E344A6C0D81}
+	EndGlobalSection
+EndGlobal
