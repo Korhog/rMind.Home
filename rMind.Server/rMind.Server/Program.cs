@@ -25,7 +25,6 @@ namespace rMind.Server
                 {
                     config.Listen(IPAddress.Any, 5000);                      
                 })
-
                 .Build();
     }
 }
