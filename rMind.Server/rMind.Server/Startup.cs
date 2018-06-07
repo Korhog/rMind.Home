@@ -36,7 +36,8 @@ namespace rMind.Server
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvcWithDefaultRoute();    
+            app.UseMvcWithDefaultRoute();
+            app.UseWebSockets();
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World!");

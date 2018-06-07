@@ -6,15 +6,21 @@ using Bifrost.Devices.Gpio;
 using Bifrost.Devices.Gpio.Abstractions;
 using Bifrost.Devices.Gpio.Core;
 
+using System.Net.WebSockets;
+
 namespace rMind.Device
 {
     using Core;
 #warning комментарии перевести на английский
     public class Mind : IMindCore
-    {
+    {        
         IGpioController m_gpioController;
         Dictionary<Guid, Device> m_devices;
         Timer m_timer;
+
+        static int F() { return 4; }
+        int f = Mind.F();
+
 
         public Mind()
         {
@@ -29,6 +35,8 @@ namespace rMind.Device
                 // ignore
             }
         }
+
+        
 
         void Execute(object sender)
         {
@@ -87,6 +95,14 @@ namespace rMind.Device
             int fires = 0;
             m_timer = new Timer(new TimerCallback(Execute), fires, 0, 25000);
             return true;
+        }
+
+        public async void RunSocket()
+        {
+            var ws = new ClientWebSocket();
+            var uri = new Uri("ws://localhost");
+
+            await ws.ConnectAsync(uri, CancellationToken.None);
         }
     }
     
