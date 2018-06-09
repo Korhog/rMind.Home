@@ -90,10 +90,15 @@ namespace rMind.Device
             return true;
         }
 
-        public bool Run()
+        public bool RunScheduler()
         {
             int fires = 0;
             m_timer = new Timer(new TimerCallback(Execute), fires, 0, 25000);
+            return true;
+        }
+
+        public bool StopScheduler()
+        {
             return true;
         }
 

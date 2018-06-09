@@ -24,7 +24,7 @@ namespace rMind.Server
 
             if (m_mind.Load())
             {
-                m_mind.Run();
+                m_mind.RunScheduler();
             }
         }
 

@@ -10,6 +10,6 @@ namespace rMind.Core
         bool Load();
 
         /// <summary> run device scheduller </summary>
-        bool Run();
+        bool RunScheduler();
     }
 }
