@@ -18,10 +18,6 @@ namespace rMind.Device
         Dictionary<Guid, Device> m_devices;
         Timer m_timer;
 
-        static int F() { return 4; }
-        int f = Mind.F();
-
-
         public Mind()
         {
             m_gpioController = null;
@@ -34,9 +30,7 @@ namespace rMind.Device
             {
                 // ignore
             }
-        }
-
-        
+        }        
 
         void Execute(object sender)
         {
@@ -92,6 +86,9 @@ namespace rMind.Device
 
         public bool RunScheduler()
         {
+            // RunSocket();
+            MindBuilder.Build(this);
+
             int fires = 0;
             m_timer = new Timer(new TimerCallback(Execute), fires, 0, 25000);
             return true;
