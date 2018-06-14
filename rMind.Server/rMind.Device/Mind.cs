@@ -2,34 +2,34 @@
 using System.Threading;
 using System.Collections.Generic;
 
-using Bifrost.Devices.Gpio;
-using Bifrost.Devices.Gpio.Abstractions;
-using Bifrost.Devices.Gpio.Core;
-
-using System.Net.WebSockets;
+using Windows.ApplicationModel.AppService;
 
 namespace rMind.Device
 {
     using Core;
+    using Windows.Foundation;
+    using Windows.Foundation.Collections;
+
+    public static class AsyncOperationExtension
+    {
+        public static T WaitResult<T>(this IAsyncOperation<T> awaiter, long mils = 0)
+        {
+            while (awaiter.Status != AsyncStatus.Completed)
+            { Thread.Sleep(10); }
+
+            return awaiter.GetResults();
+        }        
+    }
+
 #warning комментарии перевести на английский
     public class Mind : IMindCore
     {        
-        IGpioController m_gpioController;
         Dictionary<Guid, Device> m_devices;
         Timer m_timer;
 
         public Mind()
         {
-            m_gpioController = null;
 
-            try
-            {
-                m_gpioController = GpioController.Instance;
-            }
-            catch (Exception e)
-            {
-                // ignore
-            }
         }        
 
         void Execute(object sender)
@@ -45,34 +45,16 @@ namespace rMind.Device
         /// <summary> Переключаем состояние пина </summary>
         public object Switch(int pin)
         {
-            if (m_gpioController == null)
+            return new
             {
-                return new
-                {
-                    success = false,
-                    message = "GPIO controller not found"
-                };
-            }
-
-            using (var gpio = m_gpioController.OpenPin(pin))
-            {
-                gpio.SetDriveMode(GpioPinDriveMode.Output);
-
-                var state = gpio.Read();
-                state = state == GpioPinValue.High ? GpioPinValue.Low : GpioPinValue.High;
-                gpio.Write(state);
-
-                return new
-                {
-                    success = false,
-                    state = state,
-                };
-            }
+                success = false,
+                message = "GPIO controller not found"
+            };            
         }
 
         public bool Check()
         {
-            return m_gpioController != null;
+            return false;
         }
 
         /// <summary> Load current scheme </summary>
@@ -86,7 +68,7 @@ namespace rMind.Device
 
         public bool RunScheduler()
         {
-            // RunSocket();
+            RunSocket();
             MindBuilder.Build(this);
 
             int fires = 0;
@@ -101,10 +83,29 @@ namespace rMind.Device
 
         public async void RunSocket()
         {
-            var ws = new ClientWebSocket();
-            var uri = new Uri("ws://localhost");
+            using (var connection = new AppServiceConnection())
+            {
+                connection.AppServiceName = "com.microsoft.rmind.devicebridgeservice";
+                connection.PackageFamilyName = "rMind.Bridge-uwp_1.0.0.0_x86__wga7ry0kns2te";
 
-            await ws.ConnectAsync(uri, CancellationToken.None);
+                var status = connection.OpenAsync().WaitResult();
+                Console.WriteLine(status);
+
+                switch (status)
+                {
+                    case AppServiceConnectionStatus.Success:
+                        Console.WriteLine("Try send query");
+
+                        var message = new ValueSet();
+                        message.Add("Command", "GPIO");
+                        message.Add("Pin", 21);
+
+                        var responce = connection.SendMessageAsync(message).WaitResult();
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
     
