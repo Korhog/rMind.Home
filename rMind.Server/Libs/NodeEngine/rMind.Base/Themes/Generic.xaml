@@ -1,0 +1,31 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:rMind.CanvasEx">
+
+    <Style TargetType="local:rMindCanvas">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:rMindCanvas">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer x:Name="PART_SCROLL">
+                            <Canvas x:Name="PART_CANVAS"
+                                Width="2000" 
+                                Height="1500" 
+                                Background="Transparent" 
+                                UseLayoutRounding="True"
+                                ManipulationMode="All">
+                                <Canvas.RenderTransform>
+                                    <ScaleTransform x:Name="PART_SCALE"/>
+                                </Canvas.RenderTransform>
+                            </Canvas>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

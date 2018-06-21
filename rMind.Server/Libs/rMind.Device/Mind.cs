@@ -71,8 +71,8 @@ namespace rMind.Device
             RunSocket();
             MindBuilder.Build(this);
 
-            int fires = 0;
-            m_timer = new Timer(new TimerCallback(Execute), fires, 0, 25000);
+            // int fires = 0;
+            // m_timer = new Timer(new TimerCallback(Execute), fires, 0, 25000);
             return true;
         }
 
@@ -81,7 +81,7 @@ namespace rMind.Device
             return true;
         }
 
-        public async void RunSocket()
+        public void RunSocket()
         {
             using (var connection = new AppServiceConnection())
             {

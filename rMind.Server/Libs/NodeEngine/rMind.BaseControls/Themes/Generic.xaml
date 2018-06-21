@@ -1,0 +1,24 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:rMindBaseControls.Buttons">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/rMind.BaseControls/Themes/Buttons/RoundButton.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="local:HeaderButton" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HeaderButton">
+                    <Border                        
+                        Background="Transparent"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter Padding="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
