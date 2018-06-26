@@ -8,6 +8,7 @@ namespace rMind.Elements
     using Types;
     using Nodes;
     using CanvasEx;
+    using Storage;
 
     public struct rMindControllerState
     {        
@@ -35,7 +36,7 @@ namespace rMind.Elements
     /// Base scheme controller
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public partial class rMindBaseController : Storage.IStorageObject
+    public partial class rMindBaseController : IStorageObject
     {
         /// <summary>
         /// Контейнер со всем блоками контроллера.

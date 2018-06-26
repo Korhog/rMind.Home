@@ -167,15 +167,15 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\rMindBaseControls\rMind.BaseControls.csproj">
-      <Project>{dde69cfe-2f1d-46ed-a414-eb48870ff997}</Project>
-      <Name>rMind.BaseControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\rMindStorage\rMind.Storage.csproj">
+    <ProjectReference Include="..\rMind.Storage\rMind.Storage.csproj">
       <Project>{926d5c3d-0424-454e-b78b-b50731744d7b}</Project>
       <Name>rMind.Storage</Name>
     </ProjectReference>
-    <ProjectReference Include="..\rMindTheme\rMind.Theme.csproj">
+    <ProjectReference Include="..\rMind.BaseControls\rMind.BaseControls.csproj">
+      <Project>{dde69cfe-2f1d-46ed-a414-eb48870ff997}</Project>
+      <Name>rMind.BaseControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rMind.Theme\rMind.Theme.csproj">
       <Project>{458f5c99-d7e2-481a-baef-db0d694a0f8a}</Project>
       <Name>rMind.Theme</Name>
     </ProjectReference>

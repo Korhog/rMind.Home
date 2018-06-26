@@ -8,7 +8,21 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid>        
+        <ScrollViewer x:Name="scroll">
+            <Canvas x:Name="canvas" Background="#0d0d0d"/>
+        </ScrollViewer>
 
+        <StackPanel Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    <Setter Property="Margin" Value="2"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Click="OnBuild">Build</Button>
+        </StackPanel>
     </Grid>
 </Page>

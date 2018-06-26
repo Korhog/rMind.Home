@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using rMind.Core;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,11 +11,8 @@ namespace rMind.Server.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        IMindCore m_board;
-
-        public ValuesController(IMindCore board)
+        public ValuesController()
         {
-            m_board = board;
         }
 
         // GET: api/<controller>
@@ -30,16 +26,13 @@ namespace rMind.Server.Controllers
         [HttpGet("{id}")]
         public object Get(int id)
         {
-            var result = m_board.Check();
-            return new {
-                success = result
-            };
+            return new { success = true };
         }
 
         [Route("switch/{pin}")]
         public object Switch(int pin)
         {
-            return m_board.Switch(pin);
+            return new { success = true };
         }
     }
 }

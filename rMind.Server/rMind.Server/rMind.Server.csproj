@@ -12,9 +12,4 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Libs\rMind.Core\rMind.Core.csproj" />
-    <ProjectReference Include="..\Libs\rMind.Device\rMind.Device.csproj" />
-  </ItemGroup>
-
 </Project>
