@@ -11,6 +11,7 @@ namespace rMind.Robot.ExternalDevices
     {
         public void Update()
         {
+            OnTick?.Invoke();
         }
 
         #region Activators

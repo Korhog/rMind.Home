@@ -125,7 +125,7 @@ namespace Editor
 
         private void OnBuild(object sender, RoutedEventArgs e)
         {
-
+            canvasController.BuildMind();
         }
     }
 }
