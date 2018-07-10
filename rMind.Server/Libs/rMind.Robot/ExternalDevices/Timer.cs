@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace rMind.Robot.ExternalDevices
 {
@@ -8,6 +10,26 @@ namespace rMind.Robot.ExternalDevices
         public void Update()
         {
             OnTick?.Invoke();
+        }
+
+        public Timer()
+        {
+            SynchronizationContext ctx = SynchronizationContext.Current;
+            Thread th = new Thread((state) =>
+            {
+                while (true)
+                {
+                    var context = state as SynchronizationContext;
+                    context.Post((s) => { Update(); }, null);
+                    //OnTick?.Invoke();
+                    Thread.Sleep(1000);
+                }
+            });
+
+            th.Start(ctx);
+            //var t = Task.Factory.StartNew(action);
+            //t.Start()
+
         }
 
         #region Activators
