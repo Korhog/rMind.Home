@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace rMind.Robot.ExternalDevices
 {
@@ -22,11 +18,11 @@ namespace rMind.Robot.ExternalDevices
         #endregion
 
         [DisplayName("Time")]
-        public TimeSpan Time
+        public DateTime Time
         {
             get
             {
-                return new TimeSpan();
+                return DateTime.Now;
             }
         }
 
@@ -35,6 +31,20 @@ namespace rMind.Robot.ExternalDevices
         public void SetStep(int mills)
         {
 
+        }
+
+        [Setter]
+        [DisplayName("Time")]
+        public void SetTime(DateTime time)
+        {
+            Logger.Current().Write(time.Millisecond.ToString());
+        }
+
+        [Setter]
+        [DisplayName("Log")]
+        public void Log()
+        {
+            Logger.Current().Write("Log");
         }
     }
 }

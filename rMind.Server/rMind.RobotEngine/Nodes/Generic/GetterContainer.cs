@@ -11,11 +11,35 @@ namespace rMind.RobotEngine
     using rMind.Robot;
     using Windows.UI;
 
-    public class GetterContainer<T> : TemplateContainer
+    public class GetterContainer : TemplateContainer
     {
-        public GetterContainer(rMindBaseController parent) : base(parent)
+        public GetterContainer(RobotMindGraph parent) : base(parent)
+        {
+
+        }
+    }
+
+    public class GetterContainer<T> : GetterContainer
+    {
+        public GetterContainer(RobotMindGraph parent) : base(parent)
         {
                         
+        }
+
+        public override object GetInstance()
+        {
+            var root = Parent.CanvasController as RobotMindGraphController;
+            if (root == null)
+                return null;
+
+            var mind = root.Mind;
+            if (mind.Get(Guid) == null)
+            {
+                var instance = Activator.CreateInstance<T>();
+                mind.Add(Guid, instance);
+            }
+
+            return mind.Get(Guid);
         }
 
         protected override void Build()
@@ -29,7 +53,7 @@ namespace rMind.RobotEngine
                 {
                     InputNodeType = rMindNodeConnectionType.None,
                     OutputNodeType = rMindNodeConnectionType.Value,
-                    OutputNode = new rMindBaseNode(this)
+                    OutputNode = new PropertyNode(this, prop)
                     {
                         Label = prop.GetCustomAttribute<DisplayName>()?.Name ?? "Event",
 

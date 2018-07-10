@@ -9,6 +9,7 @@ namespace rMind.Elements
     using Nodes;
     using CanvasEx;
     using Storage;
+    using Windows.UI.Xaml.Media;
 
     public struct rMindControllerState
     {        

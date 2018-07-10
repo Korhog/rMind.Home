@@ -19,6 +19,7 @@ namespace rMind.Elements
     using ColorContainer;
     using Nodes;
     using Input;
+    using Windows.UI.Xaml.Media;
 
     public enum rElementType
     {
@@ -32,6 +33,17 @@ namespace rMind.Elements
     [JsonObject(MemberSerialization.OptIn)]
     public partial class rMindBaseElement : rMindBaseItem, IDrawContainer, IStorageObject, IInteractElement
     {
+        public Shadow Shadow {
+            get
+            {
+                return m_base.Shadow;
+            }
+            set
+            {
+                m_base.Shadow = value;
+            }
+        }
+
         protected double border = 2;
 
         protected bool m_storable = true;
@@ -109,7 +121,7 @@ namespace rMind.Elements
         {
             base.Init();
 
-            m_base = new Border();
+            m_base = new Border();            
 
             m_selector = new Border()
             {
@@ -275,7 +287,22 @@ namespace rMind.Elements
         }
 
         protected CornerRadius m_border_radius;
-        
+
+        protected virtual void SetBorderRadius(float radius)
+        {
+            CornerRadius value = new CornerRadius(radius);
+
+            m_border_radius = value;
+            m_base.CornerRadius = value;
+            m_selector.CornerRadius = new CornerRadius()
+            {
+                TopLeft = value.TopLeft == 0 ? 0 : value.TopLeft + border,
+                BottomLeft = value.BottomLeft == 0 ? 0 : value.BottomLeft + border,
+                BottomRight = value.BottomRight == 0 ? 0 : value.BottomRight + border,
+                TopRight = value.TopRight == 0 ? 0 : value.TopRight + border
+            };
+        }
+
         protected virtual void SetBorderRadius(CornerRadius value)
         {
             m_border_radius = value;

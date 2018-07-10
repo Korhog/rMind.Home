@@ -11,18 +11,88 @@ namespace rMind.RobotEngine
     using rMind.Robot;
     using Windows.UI;
 
-    public class SetterContainer<T> : TemplateContainer
+    public abstract class SetterContainer : TemplateContainer
     {
-        public SetterContainer(rMindBaseController parent) : base(parent)
+        public SetterContainer(RobotMindGraph parent) : base(parent)
         {
-                        
+            
+        }
+
+        VoidDelegate @delegate;
+        public VoidDelegate Delegate
+        {
+            get
+            {
+                if (@delegate == null)
+                {
+                    @delegate = GenerateDelegate();
+                }
+                return @delegate;
+            }
+        }
+
+        protected abstract VoidDelegate GenerateDelegate();
+    }
+
+    public class SetterContainer<T> : SetterContainer
+    {
+        protected MethodInfo m_methodInfo;
+        public override object GetInstance()
+        {
+            var root = Parent.CanvasController as RobotMindGraphController;
+            if (root == null)
+                return null;
+
+            var mind = root.Mind;
+            if (mind.Get(Guid) == null)
+            {
+                var instance = Activator.CreateInstance<T>();
+                mind.Add(Guid, instance);                
+            }
+
+            return mind.Get(Guid);
+        }
+
+        public SetterContainer(RobotMindGraph parent, MethodInfo info) : base(parent)
+        {
+            m_methodInfo = info;
+            InitArguments(info);
+        }
+
+        protected virtual void InitArguments(MethodInfo info)
+        {
+            Header = info.GetCustomAttribute<DisplayName>()?.Name ?? "Node";
+            AccentColor = Colors.LimeGreen;
+
+            var paramList = m_methodInfo.GetParameters();
+            foreach(var param in paramList)
+            {
+                rMindRow row = new rMindRow
+                {
+                    InputNodeType = rMindNodeConnectionType.Value,
+                    OutputNodeType = rMindNodeConnectionType.None,
+                    InputNode = new ParameterNode(this, param)
+                    {
+                        Label = param.Name,
+
+                        ConnectionType = rMindNodeConnectionType.Value,
+                        NodeOrientation = rMindNodeOriantation.Left,
+                        NodeType = rMindNodeType.Input,
+                        AttachMode = rMindNodeAttachMode.Single,
+                        Theme = new rMindNodeTheme
+                        {
+                            BaseFill = new SolidColorBrush(Colors.Black),
+                            BaseStroke = new SolidColorBrush(Colors.DarkGoldenrod)
+                        }
+                    }
+                };
+
+                AddRow(row);
+            }
         }
 
         protected override void Build()
         {
-            Header = typeof(T).GetCustomAttribute<DisplayName>()?.Name ?? "Node";
-            AccentColor = Colors.DarkRed;
-
             rMindRow row = new rMindRow
             {
                 InputNodeType = rMindNodeConnectionType.Container,
@@ -43,36 +113,33 @@ namespace rMind.RobotEngine
                 }
             };
 
-            AddRow(row);
+            AddRow(row);            
+        }
 
-            var methods = typeof(T).GetMethods()
-                .Where(x => x.IsPublic && x.GetCustomAttributes<rMind.Robot.Setter>().Any())               
-                .ToList();
+        protected override VoidDelegate GenerateDelegate()
+        {
+            var method = m_methodInfo;
+            var instance = GetInstance();
+            if (instance == null)
+                return null;
 
-            foreach (var met in methods)
+            var paramList = Nodes.Where(x => x is ParameterNode).Select(x => x as ParameterNode).ToArray();
+
+            // Пока мы не используем ппараметры по умолчанию
+            if (paramList.Where(x => !x.GetReverseNodes().Any()).Any())
+                return null;
+
+            var funcs = paramList
+                .Select(x => x.GetReverseNodes().FirstOrDefault() as PropertyNode)
+                .Select(x => x.Func())
+                .ToArray();
+
+            VoidDelegate @delegate = () =>
             {
-                row = new rMindRow
-                {
-                    InputNodeType = rMindNodeConnectionType.Value,
-                    OutputNodeType = rMindNodeConnectionType.None,
-                    InputNode = new rMindBaseNode(this)
-                    {
-                        Label = met.GetCustomAttribute<DisplayName>()?.Name ?? "Setter",
-
-                        ConnectionType = rMindNodeConnectionType.Value,
-                        NodeOrientation = rMindNodeOriantation.Left,
-                        NodeType = rMindNodeType.Input,
-                        AttachMode = rMindNodeAttachMode.Single,
-                        Theme = new rMindNodeTheme
-                        {
-                            BaseFill = new SolidColorBrush(Colors.Black),
-                            BaseStroke = new SolidColorBrush(Colors.Red)
-                        }
-                    }
-                };
-
-                AddRow(row);
-            }
+                var props = funcs.Select(x => x.Invoke()).ToArray();
+                method.Invoke(instance, props);
+            };            
+            return @delegate;
         }
     }
 }

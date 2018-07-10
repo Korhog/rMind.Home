@@ -5,12 +5,22 @@
     xmlns:local="using:Editor"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d" >
 
-    <Grid>        
+    <Page.Resources>
+        <ThemeShadow x:Name="MainShadow"/>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <Border x:Name="receiver" Background="#222"/>
+
+
         <ScrollViewer x:Name="scroll">
-            <Canvas x:Name="canvas" Background="#0d0d0d"/>
+            <Canvas x:Name="canvas" Background="Transparent"/>
         </ScrollViewer>
 
         <StackPanel Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -22,7 +32,16 @@
                     <Setter Property="Margin" Value="2"/>
                 </Style>
             </StackPanel.Resources>
-            <Button Click="OnBuild">Build</Button>
+            <Button Click="OnBuild" Canvas.ZIndex="-5">
+                <Button.Style>                    
+                    <Style TargetType="Button">
+                        <Setter Property="Shadow" Value="{StaticResource MainShadow}"/>
+                    </Style>
+                </Button.Style>
+                Build
+            </Button>
         </StackPanel>
+
+        <TextBox TextWrapping="Wrap" FontFamily="Consolas" x:Name="log" Grid.Row="1"/>
     </Grid>
 </Page>

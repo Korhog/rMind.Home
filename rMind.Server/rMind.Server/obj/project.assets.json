@@ -12662,7 +12662,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\e.klokov\\.nuget\\packages\\": {},
+    "C:\\Users\\grafi\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -12671,14 +12671,14 @@
       "projectUniqueName": "C:\\_git\\rmind.home\\rMind.Server\\rMind.Server\\rMind.Server.csproj",
       "projectName": "rMind.Server",
       "projectPath": "C:\\_git\\rmind.home\\rMind.Server\\rMind.Server\\rMind.Server.csproj",
-      "packagesPath": "C:\\Users\\e.klokov\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\grafi\\.nuget\\packages\\",
       "outputPath": "C:\\_git\\rmind.home\\rMind.Server\\rMind.Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\e.klokov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\grafi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12686,7 +12686,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\_git\\iot\\IoT\\IoT.Controls": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

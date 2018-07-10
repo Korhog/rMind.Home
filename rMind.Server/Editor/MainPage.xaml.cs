@@ -34,8 +34,17 @@ namespace Editor
             canvasController = new RobotMindGraphController(canvas, scroll);
 
             var contoller = new RobotMindGraph(canvasController);
+            contoller.Shadow = MainShadow;
             canvasController.SetController(contoller);
             canvasController.Draw();
+
+            MainShadow.Receivers.Add(receiver);
+
+            var logger = Logger.Current();
+            logger.OnMessage += (msg) =>
+            {
+                log.Text = log.Text + "\n" + msg;
+            };
 
             Loaded += GenerateMenu;
         }
@@ -44,16 +53,20 @@ namespace Editor
         {
             var assembly = typeof(ILogicNode).Assembly;
             var nodes = assembly.GetTypes()
-                .Where(x => typeof(ILogicNode).IsAssignableFrom(x))
+                .Where(x => typeof(IDevice).IsAssignableFrom(x))
                 .Where(x => x.IsClass)
                 .ToList();
 
             if (nodes.Count > 0)
             {
+                
+
                 MenuFlyout menu = new MenuFlyout();
                 MenuFlyoutSubItem item;
                 foreach (var node in nodes)
                 {
+                    var guid = Guid.NewGuid();
+
                     item = new MenuFlyoutSubItem
                     {
                         Text = node.GetCustomAttribute<DisplayName>()?.Name ?? "Node"
@@ -67,7 +80,8 @@ namespace Editor
                         {
                             Text = "Events",
                             ClassTemplate = ClassTemplate.Event,
-                            ClassType = node
+                            ClassType = node,
+                            Guid = guid
                         };
 
                         eventsItem.Click += OnMenuClick;
@@ -83,6 +97,7 @@ namespace Editor
                         {
                             Text = "Properties",
                             ClassTemplate = ClassTemplate.Getter,
+                            Guid = guid,
                             ClassType = node
                         };
 
@@ -93,15 +108,28 @@ namespace Editor
                     // Если есть cобытия
                     var setters = node.GetMethods().Where(x => x.IsPublic && x.GetCustomAttributes<rMind.Robot.Setter>().Any());
                     if (setters.Any())
-                    {
-                        var settersItem = new RobotMenuFlyoutItem
+                    { 
+                        var settersItem = new MenuFlyoutSubItem
                         {
                             Text = "Setters",
-                            ClassTemplate = ClassTemplate.Setter,
-                            ClassType = node
                         };
 
-                        settersItem.Click += OnMenuClick;
+                        foreach(var setter in setters)
+                        {
+                            var setterItem = new RobotMenuFlyoutItem
+                            {
+                                ClassTemplate = ClassTemplate.Setter,
+                                ClassType = node,
+                                Guid = guid,
+                                Text = setter.GetCustomAttributes<DisplayName>().FirstOrDefault()?.Name ?? "None",
+                                Method = setter
+                            };
+
+                            setterItem.Click += OnMenuClick;
+                            settersItem.Items.Add(setterItem);
+                        }
+
+                        
                         item.Items.Add(settersItem);
                     }
 
@@ -120,7 +148,15 @@ namespace Editor
                 return;
 
             var method = controller.GetType().GetMethod("Create")?.MakeGenericMethod(robotMenu.ClassType);
-            method?.Invoke(controller, new object[] { robotMenu.ClassTemplate });
+            var instance = method?.Invoke(controller, new object[] {
+                robotMenu.ClassTemplate,
+                robotMenu.Method
+            });
+
+            if (instance is TemplateContainer)
+            {
+                (instance as TemplateContainer).Guid = robotMenu.Guid;
+            }
         }
 
         private void OnBuild(object sender, RoutedEventArgs e)

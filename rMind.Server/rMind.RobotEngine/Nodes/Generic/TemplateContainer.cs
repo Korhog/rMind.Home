@@ -10,8 +10,16 @@ namespace rMind.RobotEngine
 {
     public abstract class TemplateContainer : rMindHeaderRowContainer, IEditorNode
     {
-        public TemplateContainer(rMindBaseController parent) : base(parent)
+        RobotMindGraph robot;
+        public Guid Guid { get; set; }
+        public virtual object GetInstance()
         {
+            return null;
+        }
+
+        public TemplateContainer(RobotMindGraph parent) : base(parent)
+        {
+            robot = parent;
             Build();
         }
 
