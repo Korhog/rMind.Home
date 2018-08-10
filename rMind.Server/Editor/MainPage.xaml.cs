@@ -34,11 +34,8 @@ namespace Editor
             canvasController = new RobotMindGraphController(canvas, scroll);
 
             var contoller = new RobotMindGraph(canvasController);
-            contoller.Shadow = MainShadow;
             canvasController.SetController(contoller);
             canvasController.Draw();
-
-            MainShadow.Receivers.Add(receiver);
 
             var logger = Logger.Current();
             logger.OnMessage += (msg) =>

@@ -5,6 +5,7 @@ namespace rMind.Robot.ExternalDevices
     [DisplayName("Timer")]
     class Timer : IDevice
     {
+
         public void Update()
         {
             OnTick?.Invoke();
@@ -26,6 +27,8 @@ namespace rMind.Robot.ExternalDevices
             }
         }
 
+        public IDeviceConfig Config { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         [Setter]
         [DisplayName("Step")]
         public void SetStep(int mills)
@@ -46,5 +49,13 @@ namespace rMind.Robot.ExternalDevices
         {
             Logger.Current().Write("Log");
         }
+
+        [Config("Time")]
+        [DisplayName("Display name")]
+        public long DisplayName { get; set; }
+
+        [Config("500")]
+        [DisplayName("Delta time, ms")]
+        public long DeltaTime { get; set; }
     }
 }

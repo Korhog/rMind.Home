@@ -17,8 +17,6 @@ namespace rMind.RobotEngine
 
     public class RobotMindGraph : rMindBaseController
     {
-        public Shadow Shadow { get; set; }
-
         public RobotMindGraph(rMindCanvasController parent) : base(parent)
         {
 
@@ -43,13 +41,7 @@ namespace rMind.RobotEngine
                     result = CreateSetterContainer<T>(info);
                     break;
             }
-
-            if (result != null)
-            {
-                result.Shadow = Shadow;
-            }
-            return null;
-
+            return result;
         }
 
         public rMindBaseElement CreateEventContainer<T>() where T : Robot.ILogicNode

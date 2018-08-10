@@ -7,10 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" >
 
-    <Page.Resources>
-        <ThemeShadow x:Name="MainShadow"/>
-    </Page.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -33,11 +29,6 @@
                 </Style>
             </StackPanel.Resources>
             <Button Click="OnBuild" Canvas.ZIndex="-5">
-                <Button.Style>                    
-                    <Style TargetType="Button">
-                        <Setter Property="Shadow" Value="{StaticResource MainShadow}"/>
-                    </Style>
-                </Button.Style>
                 Build
             </Button>
         </StackPanel>

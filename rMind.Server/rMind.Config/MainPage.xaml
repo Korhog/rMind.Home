@@ -1,0 +1,126 @@
+﻿<Page
+    x:Class="rMind.Config.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:rMind.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">    
+    <Page.Background>
+        <AcrylicBrush 
+            FallbackColor="#16191C"
+            TintColor="#16191C"
+            BackgroundSource="HostBackdrop"
+            TintOpacity=".85"/>
+    </Page.Background>
+    <Grid>
+        <SplitView 
+        DisplayMode="CompactInline"
+        CompactPaneLength="94" 
+        OpenPaneLength="94" 
+        PaneBackground="Transparent">            
+            <SplitView.Pane>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <HyperlinkButton>
+                        <FontIcon Glyph="&#xE700;" Width="94" Height="60" Foreground="White"/>
+                    </HyperlinkButton>
+
+                    <ListView Grid.Row="1" 
+                              Margin="0,60"
+                              Width="60"
+                              ItemClick="OnMenuClick" 
+                              SelectedIndex="0"
+                              IsItemClickEnabled="True" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="MinWidth" Value="0"/>
+                                <Setter Property="Height" Value="Auto"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListViewItem">
+                                            <ListViewItemPresenter 
+                                                FontWeight="ExtraLight"
+                                                Foreground="#C0C5C9"
+                                                PointerOverForeground="#C0C5C9" 
+                                                PressedBackground="#2E3439" 
+                                                SelectedPressedBackground="DodgerBlue" 
+                                                SelectionCheckMarkVisualEnabled="True" 
+                                                SelectedForeground="White" 
+                                                SelectedBackground="DodgerBlue"
+                                                SelectedPointerOverBackground="DodgerBlue">                                                
+                                            </ListViewItemPresenter>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+
+                        <ListView.Items>
+                            <ListViewItem>
+                                <FontIcon Glyph="&#xE950;" FontSize="32"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <FontIcon Glyph="&#xE99A;" FontSize="32"/>
+                            </ListViewItem>
+                        </ListView.Items>                        
+                    </ListView>
+
+                    <HyperlinkButton Grid.Row="2" Width="94" Height="60">
+                        <FontIcon Glyph="&#xEDAC;"  Foreground="White"/>
+                    </HyperlinkButton>
+                </Grid>
+            </SplitView.Pane>
+
+            <SplitView.Content>
+                <Frame x:Name="content">
+                    <Frame.Background>
+                        <AcrylicBrush 
+                            FallbackColor="#23272B"
+                            TintColor="#23272B"
+                            BackgroundSource="HostBackdrop"
+                            TintOpacity=".95"/>
+                    </Frame.Background>
+                </Frame>
+            </SplitView.Content>
+        </SplitView>
+
+        <Grid x:Name="AppTitleBar" Background="Transparent" VerticalAlignment="Top" Margin="374,0,0,0" Height="60">
+            <!-- Width of the padding columns is set in LayoutMetricsChanged handler. -->
+            <!-- Using padding columns instead of Margin ensures that the background
+         paints the area under the caption control buttons (for transparent buttons). -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="LeftPaddingColumn" Width="0"/>
+                <ColumnDefinition/>
+                <ColumnDefinition x:Name="RightPaddingColumn" Width="144"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="30,0">
+                <TextBlock Text="rMind" 
+                           VerticalAlignment="Center"
+                           Foreground="Violet"
+                           FontWeight="SemiBold"
+                           FontSize="16"                                          
+                           Style="{StaticResource CaptionTextBlockStyle}"/>
+                <TextBlock Text="Configurator" 
+                           VerticalAlignment="Center"
+                           Foreground="White"
+                           FontSize="16"      
+                           Opacity=".8"
+                           Style="{StaticResource CaptionTextBlockStyle}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+
+
+</Page>

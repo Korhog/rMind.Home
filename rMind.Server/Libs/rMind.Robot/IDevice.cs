@@ -8,6 +8,7 @@ namespace rMind.Robot
 {
     public interface IDevice : ILogicNode
     {
+        IDeviceConfig Config { get; set; }
         /// <summary> update device state </summary>
         void Update();
     }
