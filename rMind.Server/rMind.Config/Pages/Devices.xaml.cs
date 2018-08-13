@@ -1,29 +1,17 @@
-﻿using rMind.Controls;
-using rMind.Robot;
-using rMind.Robot.Utils;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
+using rMind.Controls;
+using rMind.Robot;
+using rMind.Robot.Utils;
 
 namespace rMind.Config.Pages
 {
-    /// <summary>
-    /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
-    /// </summary>
     public sealed partial class Devices : Page
     {
         public Devices()
@@ -60,6 +48,7 @@ namespace rMind.Config.Pages
                     .Where(x => x.GetCustomAttributes<rMind.Robot.Config>().Any())
                     .Select(x => new ConfigProperty {
                         ClassName = x.Name,
+                        Value = x.GetCustomAttribute<Robot.Config>()?.Default,
                         Name = x.GetCustomAttribute<DisplayName>()?.Name ?? "Property"
                     }).ToList()
             });
@@ -67,7 +56,6 @@ namespace rMind.Config.Pages
 
         private void OnDeviceClick(object sender, ItemClickEventArgs e)
         {
-
             var config = e.ClickedItem as DeviceConfig;
             DataContext = config;
 
