@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace rMind.Robot
 {
-    public interface IDevice : ILogicNode
+    public enum ClassTemplate
     {
-        /// <summary> update device state </summary>
-        void Update();
+        None = 0,
+        Setter = 1,
+        Getter = 2,
+        Event = 3
     }
 }

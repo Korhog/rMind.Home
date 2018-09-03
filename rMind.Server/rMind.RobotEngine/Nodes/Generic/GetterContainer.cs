@@ -49,6 +49,7 @@ namespace rMind.RobotEngine
 
             foreach(var prop in typeof(T).GetProperties())
             {
+               
                 var row = new rMindRow
                 {
                     InputNodeType = rMindNodeConnectionType.None,

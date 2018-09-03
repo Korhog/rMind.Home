@@ -5,6 +5,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/rMind.BaseControls/Themes/Buttons/RoundButton.xaml"/>
+        <ResourceDictionary Source="/rMind.BaseControls/Themes/Tree/TreeSelector.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="local:HeaderButton" >

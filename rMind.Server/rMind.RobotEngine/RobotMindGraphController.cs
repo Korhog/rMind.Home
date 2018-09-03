@@ -12,7 +12,7 @@ namespace rMind.RobotEngine
 
         public RobotMindGraphController(Canvas canvas, ScrollViewer scroll) : base (canvas, scroll)
         {
-            Mind = new RobotMindGeneric();
+            Mind = RobotMind.Current;
         }
 
         public IRobotMind BuildMind()

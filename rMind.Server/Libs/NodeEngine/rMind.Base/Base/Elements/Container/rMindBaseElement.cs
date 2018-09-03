@@ -33,17 +33,6 @@ namespace rMind.Elements
     [JsonObject(MemberSerialization.OptIn)]
     public partial class rMindBaseElement : rMindBaseItem, IDrawContainer, IStorageObject, IInteractElement
     {
-        public Shadow Shadow {
-            get
-            {
-                return m_base.Shadow;
-            }
-            set
-            {
-                m_base.Shadow = value;
-            }
-        }
-
         protected double border = 2;
 
         protected bool m_storable = true;

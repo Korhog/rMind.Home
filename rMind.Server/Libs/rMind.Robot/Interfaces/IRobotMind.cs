@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace rMind.Robot
 {
@@ -10,7 +7,9 @@ namespace rMind.Robot
     {
         void Clear();
         object Get(Guid guid);
-        object Create<T>();
+        object Create<T>() where T : IDevice;
         void Add(Guid guid, object obj);
+
+        IRobotConfig Config { get; }
     }
 }

@@ -22,4 +22,14 @@ namespace rMind.Robot
     {
 
     }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public class Config : Attribute
+    {
+        public Config(string def)
+        {
+            Default = def;
+        }
+        public string Default { get; private set; }
+    }
 }

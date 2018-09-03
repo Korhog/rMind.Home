@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 namespace rMind.Robot.ExternalDevices
 {
     [DisplayName("Timer")]
-    class Timer : IDevice
+    public class Timer : ExternalDevice
     {
-        public void Update()
+        public override void Update()
         {
             OnTick?.Invoke();
         }
@@ -68,5 +68,13 @@ namespace rMind.Robot.ExternalDevices
         {
             Logger.Current().Write("Log");
         }
+
+        [Config("Time")]
+        [DisplayName("Display name")]
+        public long DisplayName { get; set; }
+
+        [Config("500")]
+        [DisplayName("Delta time, ms")]
+        public long DeltaTime { get; set; }        
     }
 }

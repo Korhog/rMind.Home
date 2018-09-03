@@ -106,18 +106,28 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ClassTemplate.cs" />
+    <Compile Include="Dto\WrapperDto.cs" />
     <Compile Include="ECS.cs" />
+    <Compile Include="Entities\TreeFolder.cs" />
+    <Compile Include="Entities\TreeItem.cs" />
+    <Compile Include="ExternalDevices\ExternalDevice.cs" />
     <Compile Include="ExternalDevices\Timer.cs" />
-    <Compile Include="IDevice.cs" />
-    <Compile Include="IExternalDevice.cs" />
-    <Compile Include="ILogicNode.cs" />
-    <Compile Include="IRobot.cs" />
+    <Compile Include="Interfaces\IConfig.cs" />
+    <Compile Include="Interfaces\IDevice.cs" />
+    <Compile Include="Interfaces\IDeviceConfig.cs" />
+    <Compile Include="Interfaces\IExternalDevice.cs" />
+    <Compile Include="Interfaces\ILogicNode.cs" />
+    <Compile Include="Interfaces\IRobot.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="Mind\IRobotMind.cs" />
+    <Compile Include="Interfaces\IRobotMind.cs" />
+    <Compile Include="Mind\RobotConfig.cs" />
+    <Compile Include="Mind\RobotMind.cs" />
     <Compile Include="Robot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RobotAttributes.cs" />
     <Compile Include="RobotMindGeneric.cs" />
+    <Compile Include="Utils\DevicesHelper.cs" />
     <EmbeddedResource Include="Properties\rMind.Robot.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -126,7 +136,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Utils\" />
+    <ProjectReference Include="..\NodeEngine\rMind.BaseControls\rMind.BaseControls.csproj">
+      <Project>{dde69cfe-2f1d-46ed-a414-eb48870ff997}</Project>
+      <Name>rMind.BaseControls</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
