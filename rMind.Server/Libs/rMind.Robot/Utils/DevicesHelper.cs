@@ -17,6 +17,7 @@ namespace rMind.Robot.Utils
                 return Task.Run(() => {
                     var wrappers = typeof(IDevice).Assembly.GetTypes()
                         .Where(x => typeof(IDevice).IsAssignableFrom(x))
+                        .Where(x => !x.IsAbstract)
                         .Where(x => x.IsClass)
                         .Select(x => new WrapperDto
                         {

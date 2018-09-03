@@ -8,5 +8,9 @@ namespace rMind.Robot
 {
     public class Robot : IRobot
     {
+        public Robot()
+        {
+
+        }
     }
 }

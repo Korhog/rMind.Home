@@ -3,10 +3,9 @@
 namespace rMind.Robot.ExternalDevices
 {
     [DisplayName("Timer")]
-    class Timer : IDevice
+    public class Timer : ExternalDevice
     {
-
-        public void Update()
+        public override void Update()
         {
             OnTick?.Invoke();
         }
@@ -26,8 +25,6 @@ namespace rMind.Robot.ExternalDevices
                 return DateTime.Now;
             }
         }
-
-        public IDeviceConfig Config { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         [Setter]
         [DisplayName("Step")]
@@ -56,6 +53,6 @@ namespace rMind.Robot.ExternalDevices
 
         [Config("500")]
         [DisplayName("Delta time, ms")]
-        public long DeltaTime { get; set; }
+        public long DeltaTime { get; set; }        
     }
 }

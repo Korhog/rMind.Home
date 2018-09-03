@@ -39,12 +39,24 @@ namespace rMind.Config
 
             Window.Current.SetTitleBar(AppTitleBar);
 
-            content.Navigate(typeof(Devices));
+            content.Navigate(typeof(DashboardPage));
         }
 
         private void OnMenuClick(object sender, ItemClickEventArgs e)
         {
-
+            var tag = (e.ClickedItem as FontIcon)?.Tag.ToString();
+            switch (tag)
+            {
+                case "dash":
+                    content.Navigate(typeof(DashboardPage));
+                    break;
+                case "devices":
+                    content.Navigate(typeof(Devices));
+                    break;
+                case "mind":
+                    content.Navigate(typeof(MindPage));
+                    break;
+            }
         }
     }
 }

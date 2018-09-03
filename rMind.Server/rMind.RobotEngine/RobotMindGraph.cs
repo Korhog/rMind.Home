@@ -4,17 +4,10 @@ using rMind.CanvasEx;
 using rMind.Storage;
 using Windows.UI.Xaml.Media;
 using System.Reflection;
+using rMind.Robot;
 
 namespace rMind.RobotEngine
 {
-    public enum ClassTemplate
-    {
-        None = 0,
-        Setter = 1,
-        Getter = 2,
-        Event = 3
-    }
-
     public class RobotMindGraph : rMindBaseController
     {
         public RobotMindGraph(rMindCanvasController parent) : base(parent)

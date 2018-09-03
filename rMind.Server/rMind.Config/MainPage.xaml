@@ -67,10 +67,13 @@
 
                         <ListView.Items>
                             <ListViewItem>
-                                <FontIcon Glyph="&#xE950;" FontSize="32"/>
+                                <FontIcon Glyph="&#xE8FC;" FontSize="32" Tag="dash"/>
                             </ListViewItem>
                             <ListViewItem>
-                                <FontIcon Glyph="&#xE99A;" FontSize="32"/>
+                                <FontIcon Glyph="&#xE950;" FontSize="32" Tag="devices"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <FontIcon Glyph="&#xE99A;" FontSize="32" Tag="mind"/>
                             </ListViewItem>
                         </ListView.Items>                        
                     </ListView>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace rMind.Robot
 {
-    public class RobotMindGeneric : IRobotMind
+    public class RobotMindGeneric
     {
         Dictionary<Guid, object> m_devices;
         public RobotMindGeneric()
